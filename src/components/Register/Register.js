@@ -1,12 +1,21 @@
 import userEvent from "@testing-library/user-event";
 import "./Register.scss";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
 
 const Register = (props) => {
   let history = useHistory();
   const handleLogin = () => {
     history.push("/login");
   };
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/users").then((data) => {
+      console.log(">>> check data axios: ", data);
+    });
+  }, []);
+
   return (
     <div className="register-container">
       <div className="container">
@@ -35,7 +44,7 @@ const Register = (props) => {
                 placeholder="Phone number"
               ></input>
             </div>
-             <div className="form-group">
+            <div className="form-group">
               <label>Username:</label>
               <input
                 type="text"
@@ -60,13 +69,10 @@ const Register = (props) => {
               ></input>
             </div>
             <button className="btn btn-primary">Register</button>
-            
+
             <hr />
             <div className="text-center">
-              <button
-                className="btn btn-success"
-                onClick={() => handleLogin()}
-              >
+              <button className="btn btn-success" onClick={() => handleLogin()}>
                 Already've an account. Login
               </button>
             </div>
