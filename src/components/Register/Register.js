@@ -11,7 +11,7 @@ const Register = (props) => {
   };
 
   useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/users").then((data) => {
+    axios.get("http://localhost:8080/api/test-api").then((data) => {
       console.log(">>> check data axios: ", data);
     });
   }, []);
