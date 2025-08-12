@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { registerNewUser } from "../../services/userService";
 
 const Register = (props) => {
   const [email, setEMail] = useState("");
@@ -38,15 +39,22 @@ const Register = (props) => {
       return false;
     }
 
-    let regx = /\S+@\S+\.\S+/;
-    if (!regx.test(email)) {
+    let regxMail = /\S+@\S+\.\S+/;
+    if (!regxMail.test(email)) {
       toast.error("Please enter a valid email address");
       setObjCheckInput({ ...defaultValidInput, isValidEmail: false });
       return false;
     }
 
+    let regxPhone = /^(0|\+84)[0-9]{9}$/;
     if (!phone) {
       toast.error("Phone is required");
+      setObjCheckInput({ ...defaultValidInput, isValidPhone: false });
+      return false;
+    }
+
+    if (!regxPhone.test(phone)) {
+      toast.error("Please enter a valid phone number");
       setObjCheckInput({ ...defaultValidInput, isValidPhone: false });
       return false;
     }
@@ -66,16 +74,18 @@ const Register = (props) => {
     return true;
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     let check = isValidInputs();
 
     if (check === true) {
-      axios.post("http://localhost:8080/api/v1/register", {
-        email,
-        phone,
-        username,
-        password,
-      });
+      let response = await registerNewUser(email, phone, username, password);
+      let serverData = response.data;
+      if (+serverData.EC === 0) {
+        toast.success(serverData.EM);
+        history.push("/login");
+      } else {
+        toast.error(serverData.EM);
+      }
     }
   };
 
