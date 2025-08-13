@@ -34,7 +34,26 @@ const Login = (props) => {
       return;
     }
 
-    await loginUser(valueLogin, password);
+    let response = await loginUser(valueLogin, password);
+    if (response && response.data && +response.data.EC === 0) {
+      let data = {
+        isAuthenticated: true,
+        token: "fake token",
+      };
+      sessionStorage.setItem("account", JSON.stringify(data));
+      history.push("/users");
+      window.location.reload();
+    }
+    if (response && response.data && +response.data.EC !== 0) {
+      toast.error(response.data.EM);
+    }
+    console.log(">>>check response: ", response.data);
+  };
+
+  const handlePressEnter = (event) => {
+    if(event.charCode === 13 && event.code === "Enter") {
+      handleLogin();
+    }
   };
 
   return (
@@ -74,6 +93,7 @@ const Login = (props) => {
               onChange={(event) => {
                 setPassword(event.target.value);
               }}
+              onKeyPress={(event) => handlePressEnter(event)}
             ></input>
             <button className="btn btn-primary" onClick={() => handleLogin()}>
               Login
