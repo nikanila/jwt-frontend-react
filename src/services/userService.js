@@ -10,9 +10,13 @@ const registerNewUser = (email, phone, username, password) => {
 
 const loginUser = (valueLogin, password) => {
   return axios.post("http://localhost:8080/api/v1/login", {
-    valueLogin, 
-    password
+    valueLogin,
+    password,
   });
-}
+};
 
-export { registerNewUser, loginUser };
+const fetchAllUsers = (page, limit) => {
+  return axios.get(`http://localhost:8080/api/v1/user/read?page=${page}&limit=${limit}`);
+};
+
+export { registerNewUser, loginUser, fetchAllUsers };
