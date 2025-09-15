@@ -18,9 +18,7 @@ const loginUser = (valueLogin, password) => {
 };
 
 const fetchAllUsers = (page, limit) => {
-  return axios.get(
-    `/api/v1/user/read?page=${page}&limit=${limit}`
-  );
+  return axios.get(`/api/v1/user/read?page=${page}&limit=${limit}`);
 };
 
 const deleteUser = (user) => {
@@ -43,11 +41,15 @@ const updateCurrentUser = (userData) => {
   return axios.put(`/api/v1/user/update`, {
     ...userData,
   });
-}
+};
 
 const getUserAccount = () => {
   return axios.get(`/api/v1/account`);
-}
+};
+
+const logoutUser = () => {
+  return axios.post(`/api/v1/logout`);
+};
 
 export {
   registerNewUser,
@@ -57,5 +59,6 @@ export {
   fetchGroup,
   createNewUser,
   updateCurrentUser,
-  getUserAccount
+  getUserAccount,
+  logoutUser,
 };

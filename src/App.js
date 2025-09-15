@@ -21,8 +21,6 @@ function App() {
               radius="9"
               color="#1877f2"
               ariaLabel="loading"
-              wrapperStyle
-              wrapperClass
             />
             <div>Loading data...</div>
           </div>
