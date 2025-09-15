@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Users.scss";
 import { fetchAllUsers, deleteUser } from "../../services/userService";
 import ReactPaginate from "react-paginate";
