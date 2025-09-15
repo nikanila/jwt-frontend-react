@@ -48,11 +48,11 @@ const Login = (props) => {
         token,
         account: { groupWithRoles, email, username },
       };
-
+      localStorage.setItem("jwt", token);
       loginContext(data);
       history.push("/users");
     }
-    
+
     if (response && +response.EC !== 0) {
       toast.error(response.EM);
     }
