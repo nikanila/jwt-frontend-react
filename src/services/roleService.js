@@ -13,4 +13,10 @@ const deleteRole = (role) => {
   });
 };
 
-export { createRoles, fetchAllRoles, deleteRole };
+const updateCurrentRole = (role) => {
+  return axios.put(`/api/v1/role/update`, {
+    ...role,
+  });
+};
+
+export { createRoles, fetchAllRoles, deleteRole, updateCurrentRole };
