@@ -2,10 +2,8 @@ import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
 import {
   fetchAllRoles,
   deleteRole,
-  updateCurrentRole,
 } from "../../services/roleService";
 import { toast } from "react-toastify";
-import { update } from "lodash";
 import ModalRole from "./ModalRole";
 
 const TableRole = forwardRef((props, ref) => {
@@ -100,7 +98,7 @@ const TableRole = forwardRef((props, ref) => {
         show={isShowModalEdit}
         onHide={async () => {
           setIsShowModalEdit(false);
-          await getAllRoles(); // reload list sau khi edit
+          await getAllRoles(); 
         }}
         dataModalRole={dataModalRole}
       />
