@@ -15,4 +15,16 @@
             color: red;
         }
     }
+
+    .table-role {
+        .delete {
+            cursor: pointer;
+            color: red;
+        }
+
+        .edit {
+            cursor: pointer;
+            color: orange;
+        }
+    }
 }
