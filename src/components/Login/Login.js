@@ -56,7 +56,6 @@ const Login = (props) => {
     if (response && +response.EC !== 0) {
       toast.error(response.EM);
     }
-    console.log(">>>check response: ", response.data);
   };
 
   const handlePressEnter = (event) => {
