@@ -1,0 +1,51 @@
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 1.6;
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #222;
+  }
+
+  h2 {
+    margin: 25px 0 15px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #222;
+  }
+
+  h3 {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 2px solid #1877f2;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+
+  p {
+    margin-bottom: 15px;
+    color: #444;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        color: #2ecc71; // ✅ xanh lá cây
+        margin-right: 8px;
+        font-size: 18px;
+      }
+    }
+  }
+}
