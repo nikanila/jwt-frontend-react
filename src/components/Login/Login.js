@@ -1,13 +1,13 @@
 import userEvent from "@testing-library/user-event";
 import "./Login.scss";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import { loginUser } from "../../services/userService";
 import { UserContext } from "../../context/UserContext";
 
 const Login = (props) => {
-  const { loginContext } = useContext(UserContext);
+  const { user, loginContext } = useContext(UserContext);
 
   let history = useHistory();
 
@@ -64,12 +64,20 @@ const Login = (props) => {
     }
   };
 
+  useEffect(() => {
+    if (user && user.isAuthenticated) {
+      history.push("/");
+    }
+  }, []);
+
   return (
     <div className="login-container">
       <div className="container">
         <div className="row px-3 px-sm-0">
           <div className="content-left col-12 d-none col-sm-7 d-sm-block">
-            <div className="brand">Hoan's website</div>
+            <div className="brand">
+              <Link to="/"><span title="Return to HomePage">Hoan's website</span></Link>
+            </div>
             <div className="detail">
               Learning reactjs to build a great UI for the website
             </div>
@@ -119,6 +127,12 @@ const Login = (props) => {
               >
                 Create new account
               </button>
+              <div className="mt-3 return">
+                <Link to="/">
+                  <i className="fa fa-arrow-circle-left"></i>
+                  <span title="Return to HomePage">Return to HomePage</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
