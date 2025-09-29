@@ -5,9 +5,16 @@ import Users from "../components/ManageUsers/Users";
 import PrivateRoutes from "./PrivateRoutes";
 import Role from "../components/Role/Role";
 import GroupRole from "../components/GroupRole/GroupRole";
+import HomePage from "../components/HomePage/HomePage";
+import About from "../components/About/About";
+
 const AppRoutes = (props) => {
   const Projects = () => {
-    return <span>Projects</span>;
+    return (
+      <div className="container mt-3">
+        <h4>Todo...</h4>
+      </div>
+    );
   };
   return (
     <>
@@ -22,10 +29,15 @@ const AppRoutes = (props) => {
         <Route path="/register">
           <Register />
         </Route>
-        <Route path="/" exact>
-          home
+        <Route path="/About">
+          <About />
         </Route>
-        <Route path="*">404 Not Found</Route>
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
+        <Route path="*">
+          <div className="container">404 Not Found</div>
+        </Route>
       </Switch>
     </>
   );
